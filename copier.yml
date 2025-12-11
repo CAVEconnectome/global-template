@@ -7,8 +7,6 @@ project_id:
   help: Name of the google project id
   validator: "{% if not project_id %}project_id is required{% endif %}"
 
-  # validator: ".+"
-
 gcp_user_account:
   type: str
   help: An email address that has google account permissions in the GCP project to give GCP resources permissions and will be used for letsencrypt certificates.
@@ -32,6 +30,7 @@ region:
 zone:
   type: str
   help: GCP zone used in kube context and defaults (e.g., us-west1-b).
+  default: "{{ region }}-""
   validator: "{% if not zone %}zone is required{% endif %}"
  
 owner:
@@ -48,11 +47,11 @@ dns_zone:
 
 vpc_name_override:
   type: str
-  help: Optional — existing VPC name to use instead of newly generated
+  help: Optional — existing VPC name to use instead of newly generated. Skipped if blank.
 
 docker_registry:
   type: str
-  help: Container registry for images. The default docker.io/caveconnectome is likely correct.
+  help: Container registry for images. The default (docker.io/caveconnectome) is likely correct.
   default: docker.io/caveconnectome
   validator: "{% if not docker_registry %}docker_registry is required{% endif %}"
 
