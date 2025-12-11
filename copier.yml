@@ -5,13 +5,15 @@
 project_id:
   type: str
   help: Name of the google project id
+  validator: "{% if not project_id %}project_id is required{% endif %}"
+
   # validator: ".+"
 
 gcp_user_account:
   type: str
   help: An email address that has google account permissions in the GCP project to give GCP resources permissions and will be used for letsencrypt certificates.
-  # validator: ".+"
-    
+  validator: "{% if not gcp_user_account %}gcp_user_account is required{% endif %}"
+   
 state_bucket:
   type: str
   help: Name of GCP bucket to store terraform and terragrunt states. Must omit the gs:// prefix.
