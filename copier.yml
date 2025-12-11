@@ -1,3 +1,26 @@
+# -------------
+#  Global-Only
+# -------------
+  
+repo_name:
+  type: str
+  help: Name of the new environment repository
+  default: cave-terraform-env
+  validator: "{% if not repo_name %}repo_name is required{% endif %}"
+  
+global_environment_name:
+  type: str
+  help: "Environment name used for the cluster folder (e.g., global, api, staging, prod)."
+  default: global
+  validator: "{% if not global_environment_name %}global_environment_name is required{% endif %}"
+
+global_cluster_prefix:
+  type: str
+  help: "Short identifier used as cluster_prefix and DNS subdomain (e.g., v5)."
+  default: globalv1
+  validator: "{% if not global_cluster_prefix %}global_cluster_prefix is required{% endif %}"
+
+
 # ---------
 #   Common
 # ---------
@@ -55,24 +78,3 @@ docker_registry:
   default: docker.io/caveconnectome
   validator: "{% if not docker_registry %}docker_registry is required{% endif %}"
 
-# -------------
-#  Global-Only
-# -------------
-  
-repo_name:
-  type: str
-  help: Name of the new environment repository
-  default: cave-terraform-env
-  validator: "{% if not repo_name %}repo_name is required{% endif %}"
-  
-global_environment_name:
-  type: str
-  help: "Environment name used for the cluster folder (e.g., global, api, staging, prod)."
-  default: global
-  validator: "{% if not global_environment_name %}global_environment_name is required{% endif %}"
-
-global_cluster_prefix:
-  type: str
-  help: "Short identifier used as cluster_prefix and DNS subdomain (e.g., v5)."
-  default: globalv1
-  validator: "{% if not global_cluster_prefix %}global_cluster_prefix is required{% endif %}"
