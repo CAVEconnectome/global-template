@@ -1,0 +1,78 @@
+# ---------
+#   Common
+# ---------
+
+project_id:
+  type: str
+  help: Name of the google project id
+  # validator: ".+"
+
+gcp_user_account:
+  type: str
+  help: An email address that has google account permissions in the GCP project to give GCP resources permissions and will be used for letsencrypt certificates.
+  # validator: ".+"
+    
+state_bucket:
+  type: str
+  help: Name of GCP bucket to store terraform and terragrunt states. Must omit the gs:// prefix.
+  validator: "{% if not state_bucket %}Bucket name is required{% elif 'gs://' in state_bucket %}Invalid format — omit gs://{% endif %}"
+  
+domain_name:
+  type: str
+  help: Base domain without protocols (e.g., example.org).
+  # validator: ".+"
+
+region:
+  type: str
+  help: GCP region for regional resources (e.g., us-west1).
+  # validator: ".+"
+
+zone:
+  type: str
+  help: GCP zone used in kube context and defaults (e.g., us-west1-b).
+  # validator: ".+"
+ 
+owner:
+  type: str
+  help: "Text label used as prefix for computational resources; helpful for cost filtering."
+  default: cave
+  # validator: ".+"
+
+dns_zone:
+  type: str
+  help: "Cloud DNS managed zone name (e.g., em)."
+  default: cave
+  # validator: ".+"
+
+vpc_name_override:
+  type: str
+  help: Optional — existing VPC name to use instead of newly generated
+  # TODO: Check the default handling in the template
+
+docker_registry:
+  type: str
+  help: Container registry for images. The default docker.io/caveconnectome is likely correct.
+  default: docker.io/caveconnectome
+  # validator: ".+"
+
+# -------------
+#  Global-Only
+# -------------
+  
+repo_name:
+  type: str
+  help: Name of the new environment repository
+  default: cave-terraform-env
+  # validator: ".+"
+  
+global_environment_name:
+  type: str
+  help: "Environment name used for the cluster folder (e.g., global, api, staging, prod)."
+  default: global
+  # validator: ".+"
+
+global_cluster_prefix:
+  type: str
+  help: "Short identifier used as cluster_prefix and DNS subdomain (e.g., v5)."
+  default: globalv1
+  # validator: ".+"
