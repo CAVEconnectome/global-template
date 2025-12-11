@@ -47,7 +47,7 @@ dns_zone:
 
 vpc_name_override:
   type: str
-  help: Optional — existing VPC name to use instead of newly generated. Skipped if blank.
+  help: "Optional: existing VPC name to use instead of newly generated. Skipped if blank."
 
 docker_registry:
   type: str
