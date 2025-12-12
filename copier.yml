@@ -20,7 +20,6 @@ global_cluster_prefix:
   default: globalv1
   validator: "{% if not global_cluster_prefix %}global_cluster_prefix is required{% endif %}"
 
-
 # ---------
 #   Common
 # ---------
@@ -47,13 +46,13 @@ domain_name:
 
 region:
   type: str
-  help: GCP region for regional resources (e.g., us-west1).
+  help: GCP region for regional resources (e.g., usjwest1).
   validator: "{% if not region %}region is required{% endif %}"
 
 zone:
   type: str
   help: GCP zone used in kube context and defaults (e.g., us-west1-b).
-  default: "{{ region }}-""
+  default: "{{ region }}-X"
   validator: "{% if not zone %}zone is required{% endif %}"
  
 owner:
